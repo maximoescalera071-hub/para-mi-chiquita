@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para vos pendejita ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        background: #0d0d0d;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        flex-direction: column;
+    }
+
+    h2 {
+        color: #fff;
+        font-family: Arial;
+        margin-bottom: 20px;
+        opacity: 0.7;
+    }
+
+    .heart {
+        position: relative;
+        width: 400px;
+        height: 400px;
+        transform: scale(0);
+        animation: aparecer 2s ease forwards, latido 1.5s infinite 2s;
+    }
+
+    @keyframes aparecer {
+        to { transform: scale(1); }
+    }
+
+    @keyframes latido {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.08); }
+    }
+
+    .text {
+        position: absolute;
+        color: #ff4d6d;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+        animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+        0% {
+            text-shadow: 0 0 5px #ff4d6d, 0 0 10px #ff4d6d;
+            opacity: 0.6;
+        }
+        100% {
+            text-shadow: 0 0 20px #ff4d6d, 0 0 40px #ff4d6d;
+            opacity: 1;
+        }
+    }
+
+    button {
+        padding: 12px 20px;
+        border: none;
+        background: #ff4d6d;
+        color: white;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom: 20px;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #ff1e4d;
+    }
+</style>
+</head>
+
+<body>
+
+<h2>Haz click ❤️</h2>
+<button onclick="playMusic()">Reproducir música</button>
+
+<div class="heart" id="heart"></div>
+
+<audio id="audio" loop>
+    <!-- Poné el mp3 acá -->
+    <source src="media-luna.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const heart = document.getElementById("heart");
+
+for (let t = 0; t < Math.PI * 2; t += 0.12) {
+
+    let x = 16 * Math.pow(Math.sin(t), 3);
+    let y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+
+    let span = document.createElement("span");
+    span.className = "text";
+
+    span.innerText = "te amo celeee";
+
+    span.style.left = (200 + x * 10) + "px";
+    span.style.top = (200 + y * 10) + "px";
+
+    span.style.animationDelay = (Math.random() * 2) + "s";
+
+    heart.appendChild(span);
+}
+
+function playMusic() {
+    const audio = document.getElementById("audio");
+    audio.play();
+}
+</script>
+
+</body>
+</html>
